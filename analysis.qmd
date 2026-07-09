@@ -1,9 +1,20 @@
 ---
 title: "Trains"
-author: "Antigravity"
-format: html
+author: "Leo Katz"
+execute:
+  echo: true
 ---
 
-# Trains
+```{r}
+#| message: false
+library(tidyverse)
+library(primer.data)
+```
 
-Welcome to the trains analysis document.
+```{r}
+glimpse(trains)
+```
+
+## Summary
+
+Attitudes toward immigration are related to brief encounters with speakers of another language in daily life, at least somewhat. Using data from Ryan Enos’s January 2012 randomized experiment on Boston-area Metra platforms (115 commuters, randomly assigned to exposure or non-exposure to Spanish-speaking confederates for two weeks), we estimate the average causal effect of that exposure on anti-immigration attitudes.
