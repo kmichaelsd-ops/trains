@@ -1,0 +1,9 @@
+---
+title: "Trains"
+author: "Antigravity"
+format: html
+---
+
+# Trains
+
+Welcome to the trains analysis document.
