@@ -9,6 +9,8 @@ execute:
 #| message: false
 library(tidyverse)
 library(primer.data)
+library(tidymodels)
+library(broom)
 ```
 
 ```{r}
@@ -17,4 +19,4 @@ glimpse(trains)
 
 ## Summary
 
-Attitudes toward immigration are related to brief encounters with speakers of another language in daily life, at least somewhat. Using data from Ryan Enos’s January 2012 randomized experiment on Boston-area Metra platforms (115 commuters, randomly assigned to exposure or non-exposure to Spanish-speaking confederates for two weeks), we estimate the average causal effect of that exposure on anti-immigration attitudes.
+Attitudes toward immigration are related to brief encounters with speakers of another language in daily life, at least somewhat. Using data from Ryan Enos’s January 2012 randomized experiment on Boston-area Metra platforms (115 commuters, randomly assigned to exposure or non-exposure to Spanish-speaking confederates for two weeks), we estimate the average causal effect of that exposure on anti-immigration attitudes.However, the small dataset we have is not fully representative of the entire population, including the Georgia voters our canidate cares about, so deviation from the model is predicted.

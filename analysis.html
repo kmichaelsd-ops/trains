@@ -110,7 +110,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(primer.data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(primer.data)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(trains)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -135,7 +137,7 @@ $ ideology_end   &lt;int&gt; 3, 4, 2, 4, 2, 5, 5, 4, 3, 4, 3, 4, 4, 1, 2, 3, 3, 
 </div>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>Attitudes toward immigration are related to brief encounters with speakers of another language in daily life, at least somewhat. Using data from Ryan Enos’s January 2012 randomized experiment on Boston-area Metra platforms (115 commuters, randomly assigned to exposure or non-exposure to Spanish-speaking confederates for two weeks), we estimate the average causal effect of that exposure on anti-immigration attitudes.</p>
+<p>Attitudes toward immigration are related to brief encounters with speakers of another language in daily life, at least somewhat. Using data from Ryan Enos’s January 2012 randomized experiment on Boston-area Metra platforms (115 commuters, randomly assigned to exposure or non-exposure to Spanish-speaking confederates for two weeks), we estimate the average causal effect of that exposure on anti-immigration attitudes.However, the small dataset we have is not fully representative of the entire population, including the Georgia voters our canidate cares about, so deviation from the model is predicted.</p>
 </section>
 
 </main>
