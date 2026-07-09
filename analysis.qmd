@@ -12,11 +12,7 @@ library(primer.data)
 library(tidymodels)
 library(broom)
 library(gt)
-```
-
-```{r}
-#| include: false
-glimpse(trains)
+library(marginaleffects)
 ```
 
 ```{r}
@@ -26,31 +22,34 @@ fit_att <- linear_reg(engine = "lm") |>
 ```
 
 ```{r}
-tidy(fit_att, conf.int = TRUE)
-```
-
-```{r}
-# Create a formatted table of the model results
-tidy(fit_att, conf.int = TRUE) %>%
-  select(term, estimate, conf.low, conf.high) %>%
-  gt() %>%
-  tab_header(
-    title = "Immigration Attitude Model Estimates",
-    subtitle = "Data Source: trains experiment from primer.data"
-  ) %>%
-  cols_label(
-    term = "Term",
-    estimate = "Estimate",
-    conf.low = "Lower 95% CI",
-    conf.high = "Upper 95% CI"
-  ) %>%
-  fmt_number(
-    columns = c(estimate, conf.low, conf.high),
-    n_sigfig = 3
+#| message: false
+# Calculate predictions and build a beautiful plot
+plot_predictions(fit_att, condition = "treatment", draw = FALSE) %>%
+  ggplot(aes(x = treatment, y = estimate, ymin = conf.low, ymax = conf.high, color = treatment)) +
+  geom_pointrange(size = 1.2, stroke = 1.5) +
+  scale_color_manual(values = c("Control" = "#2c3e50", "Treated" = "#e74c3c")) +
+  labs(
+    title = "Predicted Immigration Attitudes by Treatment Group",
+    subtitle = "Commuters exposed to Spanish-speakers are predicted to have higher anti-immigration attitude scores",
+    caption = "Data Source: trains experiment from primer.data. Error bars represent 95% confidence intervals.",
+    x = "Treatment Group",
+    y = "Predicted Attitude Score (Scale 3-15)"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(face = "bold", size = 16, margin = margin(b = 10)),
+    plot.subtitle = element_text(color = "dimgray", margin = margin(b = 15)),
+    plot.caption = element_text(face = "italic", size = 10, margin = margin(t = 15)),
+    axis.title.x = element_text(face = "bold", margin = margin(t = 10)),
+    axis.title.y = element_text(face = "bold", margin = margin(r = 10)),
+    panel.grid.major.x = element_blank()
   )
 ```
 
 ## Summary
 
-Attitudes toward immigration are related to brief encounters with speakers of another language in daily life, at least somewhat. Using data from Ryan Enos’s January 2012 randomized experiment on Boston-area Metra platforms (115 commuters, randomly assigned to exposure or non-exposure to Spanish-speaking confederates for two weeks), we estimate the average causal effect of that exposure on anti-immigration attitudes.However, the small dataset we have is not fully representative of the entire population, including the Georgia voters our canidate cares about, so deviation from the model is predicted. We model immigration attitudes as a linear function of exposure to Spanish-speakers.
+Attitudes toward immigration are related to brief encounters with speakers of another language in daily life, at least somewhat. Using data from Ryan Enos’s January 2012 randomized experiment on Boston-area Metra platforms (115 commuters, randomly assigned to exposure or non-exposure to Spanish-speaking confederates for two weeks), we estimate the average causal effect of that exposure on anti-immigration attitudes.However, the small dataset we have is not fully representative of the entire population, including the Georgia voters our canidate cares about, so deviation from the model is predicted. We model immigration attitudes as a linear function of exposure to Spanish-speakers. Specifically, we estimate that the average causal effect of exposure to Spanish-speakers is an increase of 1.55 points on the anti-immigration attitude scale, with a 95% confidence interval ranging from 0.51 to 2.58 points. The experiment was run on 115 Boston-area Metra commuters — not a random sample and not the Georgia voters our candidate cares about. The causal effect estimated here may not transfer. The confidence interval should probably be wider than the model’s nominal 0.51 to 2.58, because neither the representativeness of the sample nor the validity of a one-time survey as a measure of ‘real’ attitudes is accounted for in the model’s standard error.
+
+
 
